@@ -89,16 +89,30 @@ int createLeafNodes(int freq[]) {
 
 // Step 3: Build the encoding tree using heap operations
 int buildEncodingTree(int nextFree) {
-    // TODO:
-    // 1. Create a MinHeap object.
-    // 2. Push all leaf node indices into the heap.
-    // 3. While the heap size is greater than 1:
-    //    - Pop two smallest nodes
-    //    - Create a new parent node with combined weight
-    //    - Set left/right pointers
-    //    - Push new parent index back into the heap
-    // 4. Return the index of the last remaining node (root)
-    return -1; // placeholder
+    MinHeap heap;
+    //pushes all leaf nodes into the heap
+    for (int i=0;i< nextFree ; i++) {
+        heap.push(i,weightArr);
+    }
+
+    //combines the smallest 2 nodes until one is left
+    while (heap.size >1) {
+
+        int left = heap.pop(weightArr);
+        int right = heap.pop(weightArr);
+
+        //parent node at nextFree
+        leftArr[nextFree] = left;
+        rightArr[nextFree] = right;
+        weightArr[nextFree] = weightArr[left] + weightArr[right];
+        charArr[nextFree] = 'x';
+
+        //pushes the parent we created into the heap
+        heap.push(nextFree, weightArr);
+
+        nextFree++;
+    }
+    return heap.pop(weightArr);
 }
 
 // Step 4: Use an STL stack to generate codes
