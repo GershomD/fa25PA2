@@ -22,10 +22,13 @@ int buildEncodingTree(int nextFree);
 void generateCodes(int root, string codes[]);
 void encodeMessage(const string& filename, string codes[]);
 
+
 int main() {
     int freq[26] = {0};
 
-    // Step 1: Read file and count letter frequencies
+    // Step 1: Read file and count letter
+
+    //current file made longer to see properties
     buildFrequencyTable(freq, "input.txt");
 
     // Step 2: Create leaf nodes for each character with nonzero frequency
@@ -40,6 +43,7 @@ int main() {
 
     // Step 5: Encode the message and print output
     encodeMessage("input.txt", codes);
+
 
     return 0;
 }
@@ -174,3 +178,4 @@ void encodeMessage(const string& filename, string codes[]) {
     cout << "\n";
     file.close();
 }
+

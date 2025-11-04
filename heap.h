@@ -14,6 +14,8 @@ struct MinHeap {
 
     MinHeap() { size = 0; }
 
+    //push function with two parameters. idx = index of node at star
+                                       //weightArr = array of nodes weight
     void push(int idx, int weightArr[]) {
         if (size >=64) {
             cout <<"Overflow detected"; //first checks for OF
@@ -24,6 +26,7 @@ struct MinHeap {
         upheap(pos,weightArr); //restores order after insert
     }
 
+    //pop function with parameter weightArr
     int pop(int weightArr[]) {
         //sanity check
         if (size == 0) return -1;
@@ -35,6 +38,8 @@ struct MinHeap {
         return minIndex;
     }
 
+    //upheap function with parameters pos and weightArr
+    //pos is the current index of the node being changed
     void upheap(int pos, int weightArr[]) {
         while (pos>0) {
             int parent = (pos-1)/2;
@@ -44,6 +49,7 @@ struct MinHeap {
         }
     }
 
+    //downheap function with parameters pos and weightArr
     void downheap(int pos, int weightArr[]) {
         while (true) {
             int left = 2* pos +1;
