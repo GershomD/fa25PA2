@@ -25,6 +25,7 @@ struct MinHeap {
     }
 
     int pop(int weightArr[]) {
+        //sanity check
         if (size == 0) return -1;
         int minIndex = data[0];
         data[0] = data[--size];
